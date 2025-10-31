@@ -11,11 +11,15 @@
 ### 目录结构
 ```
 PixLCompare/
-  config.json                # 统一配置
-  run_compare.py             # Python 启动器（推荐入口）
-  test_config.py             # 配置自检脚本
-  pixelmatch/                # pixelmatch 源码与测试脚本
-    test/compare.js          # 实际执行的对比脚本
+├── README.md
+├── CONFIG_README.md
+├── config.json                # 统一配置
+├── diff_coords.json           # 差异坐标（可选）
+├── run_compare.py             # Python 启动器（推荐入口）
+└── pixelmatch/                # pixelmatch 源码与测试脚本
+    ├── index.js
+    └── test/
+        └── compare.js         # 实际执行的对比脚本
 ```
 
 ### 环境依赖

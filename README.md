@@ -73,6 +73,44 @@ python run_compare.py
 
 通过 `filePatterns.suffixA / suffixB / fileExtension` 进行灵活适配。
 
+function diffTest(imgPath1, imgPath2, diffPath, options, expectedMismatch)
+
+*   imgPath1, imgPath2 — 需要比较的图像数据。注意：   图像尺寸必须相等。
+*   output — 输出差异图像的数据，或如果不需要差异图像则为 null。
+*   width, height —   图像的宽度和高度。注意，所有三张图像 都需要有相同的尺寸。 options 是一个具有以下属性的对象字面量：
+
+```python
+{
+ "imageDirectory": "D:\\AutoScreenCut",
+ "filePatterns": {
+   "suffixA": "_A_",
+   "suffixB": "_B_",
+   "fileExtension": ".png"
+ },
+ "comparison": {
+   "threshold": 0.1,
+   "includeAA": true,
+   "alpha": 1,
+   "diffMask": true,
+   "diffColor": [255, 0, 0],
+   "aaColor": [255, 255, 0]
+ },
+ "output": {
+   "diffPrefix": "diff_",
+   "generateDiffImages": true
+ }
+}
+```
+
+*   threshold — 匹配阈值，范围从 0 到 1。较小的值会使比较更敏感。默认为 0.1。注意：测试发现效果并不佳）
+*   includeAA — 如果为 true，则禁用检测并忽略抗锯齿像素。默认为 false。
+*   alpha — 差异输出中未更改像素的混合因子。范围从 0（纯白色）到   1（原始亮度）。默认为 0.1。
+*   aaColor — 差异输出中抗锯齿像素的颜色，格式为 \[R, G, B]。默认为 \[255, 255,0]。
+*   diffColor — 差异输出中不同像素的颜色，格式为 \[R, G, B]。默认为 \[255, 0, 0]。
+*   diffColorAlt — 用于区分明暗差异的替代颜色，以区分“添加”和“移除”的部分。如果未提供，所有不同像素使用 diffColor指定的颜色。默认为 null。
+*   diffMask — 在透明背景（遮罩）上绘制差异，而不是在原始图像上绘制。将不会绘制检测到的抗锯齿像素。比较两张图像，写入输出差异，并返回不匹配像素的数量。
+
+
 ### 常用脚本
 - `python run_compare.py`：读取 `config.json` 并调用 `pixelmatch/test/compare.js` 批量对比。
 - `python test_config.py`：检查配置文件存在性、JSON 正确性与关键字段。

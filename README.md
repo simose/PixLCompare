@@ -13,12 +13,12 @@
 PixLCompare/
 ├── README.md
 ├── CONFIG_README.md
+├── package.json               # 管理 pixelmatch、pngjs 依赖
 ├── config.json                # 统一配置
 ├── diff_coords.json           # 差异坐标（可选）
 ├── run_compare.py             # Python 启动器（推荐入口）
-└── pixelmatch/                # pixelmatch 源码与测试脚本
-    ├── index.js
-    └── test/
+└── scripts/
+    └── node/
         └── compare.js         # 实际执行的对比脚本
 ```
 

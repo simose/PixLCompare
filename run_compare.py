@@ -47,8 +47,8 @@ def run_image_compare():
         current_dir = Path(__file__).parent.absolute()
         print(f"当前工作目录: {current_dir}")
         
-        # 检查 compare.js 文件是否存在
-        compare_script = current_dir / "pixelmatch" / "test" / "compare.js"
+        # 检查 compare.js 文件是否存在（迁移后路径）
+        compare_script = current_dir / "scripts" / "node" / "compare.js"
         if not compare_script.exists():
             print(f"❌ 错误: 找不到文件 {compare_script}")
             return False
